@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.common.BaseActivity
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -35,20 +33,6 @@ class MainActivity : BaseActivity(), BaseView {
 
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /*textView.setOnClickListener {
-            presenter.getPhone(this,"13666666666",object : DataCallBack{
-                override fun callBack(obj: Any?) {
-                    if (obj is PhoneBean){
-                        textView.setText(obj.phone)
-                    }
-                }
-                *//*obj -> {
-                    if (obj is PhoneBean){
-                        textView.setText(obj.phone)
-                        }
-                    }*//*
-            }
-            )}*/
         binding.test.setOnClickListener {
             presenter.getPhone(this, "13666666666", { obj ->
                 if (obj is PhoneBean) {

@@ -1,6 +1,5 @@
 package com.example.myapplication.api;
 
-import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import com.example.myapplication.gson.LongDefault0Adapter;
 import com.example.myapplication.utils.App;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.GsonBuildConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -181,7 +179,7 @@ public class ApiRetrofit implements Interceptor {
         return "application/json";
     }
 
-    public ApiServer getApiService() {
+    public ApiServer getApiServer() {
         return apiServer;
     }
 

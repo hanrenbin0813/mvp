@@ -67,7 +67,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
     }
 
 
-    protected void onStart() {
+    public void onStart() {
         if (view != null) {
             view.requestStart();
         }
@@ -80,10 +80,10 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T o) {
+        if (view != null) {
+            view.requestFinish();
+        }
         try {
-            if (view != null) {
-                view.requestFinish();
-            }
             //测试代码
             onSuccess(o);
             /*BaseModel model = (BaseModel) o;
@@ -158,6 +158,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onComplete() {
+
     }
 
     public abstract void onSuccess(T o);

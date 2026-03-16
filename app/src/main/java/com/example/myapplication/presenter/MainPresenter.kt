@@ -8,26 +8,32 @@ import com.example.myapplication.mvp.BaseObserver
 import com.example.myapplication.mvp.BasePresenter
 import com.example.myapplication.mvp.BaseView
 import com.example.myapplication.mvp.DataCallBack
+import io.reactivex.Observable
 
 class MainPresenter : BasePresenter() {
     fun getMainTag(view: BaseView?, callBack: DataCallBack) {
-        val observable = ApiRetrofit.getInstance().getApiService().getMainTag("")
+        val observable = ApiRetrofit.getInstance().apiServer.getMainTag("")
         val observer: BaseObserver<BaseModel<MainTagBean?>?> =
             object : BaseObserver<BaseModel<MainTagBean?>?>(view) {
                 override fun onSuccess(o: BaseModel<MainTagBean?>?) {
                     callBack.callBack(o)
                 }
             }
-        loadData<BaseModel<MainTagBean?>?>(observable, observer)
+        startRequest(observable,observer)
     }
 
     fun getPhone(view: BaseView?, phone: String?, callBack: DataCallBack) {
-        val observable = ApiRetrofit.getInstance().getApiService().getPhone(phone)
+        val observable = ApiRetrofit.getInstance().apiServer.getPhone(phone)
         val observer: BaseObserver<PhoneBean?> = object : BaseObserver<PhoneBean?>(view) {
             override fun onSuccess(o: PhoneBean?) {
                 callBack.callBack(o)
             }
         }
-        loadData<PhoneBean?>(observable, observer)
+        startRequest(observable,observer)
+    }
+
+    fun <T>startRequest(observable: Observable<T>,observer: BaseObserver<T>){
+        observer.onStart();
+        loadData(observable,observer)
     }
 }
