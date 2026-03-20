@@ -2,6 +2,7 @@ package com.example.myapplication.mvp
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 
@@ -22,7 +23,7 @@ open class BasePresenter {
             .observeOn(AndroidSchedulers.mainThread())
             .filter {
             if (disposed==true) false
-            true}
+            else true}
             .subscribeWith(observer)
     }
 }
